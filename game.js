@@ -8,6 +8,7 @@ let lastCam = "C1";
 var timer;
 var timerText;
 var totalTimeInSeconds = 240;
+let GameStarting = true;
 
 // main game object
 let config = {
