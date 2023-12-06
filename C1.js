@@ -1,4 +1,4 @@
-class C1 extends Phaser.Scene {
+class C1 extends CustomScene {
     constructor() {
         super('C1');
     }

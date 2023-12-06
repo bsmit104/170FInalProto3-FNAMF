@@ -1,4 +1,4 @@
-class C2 extends Phaser.Scene {
+class C2 extends CustomScene {
     constructor() {
         super('C2');
     }
@@ -21,7 +21,7 @@ class C2 extends Phaser.Scene {
         this.cameras.main.setBackgroundColor('#000000');
 
         cursors = this.input.keyboard.createCursorKeys();
-        
+
         const background = this.add.image(960, 540, 'field').setOrigin(0.5, 0.5);
         background.setScale(4.2);
         ///////////////////////////////////////////////////////

@@ -5,6 +5,9 @@
 let cursors;
 let cursor;
 let lastCam = "C1";
+var timer;
+var timerText;
+var totalTimeInSeconds = 240;
 
 // main game object
 let config = {
@@ -32,7 +35,6 @@ let config = {
         }
     },
     scene: [Gameplay, C1, C2, C3, C4, C5, C6, C7]
-    //, Intro, Title, Level_select, Water9, Sat, Cheese, Bluecheese, Earth, Gameover]
 };
 
 let game = new Phaser.Game(config);
