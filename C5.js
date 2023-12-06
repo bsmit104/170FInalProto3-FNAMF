@@ -75,7 +75,18 @@ class C5 extends Phaser.Scene {
       this.scene.start("Gameplay");
     }
     //////////////////////////////////////////////
-  }
+    this.time.addEvent({
+      delay: 1000,
+      callback: this.updateTimer,
+      callbackScope: this,
+      loop: true
+    });
+}
+
+updateTimer() {
+// Update the global timer
+globalTimer--;
+}
 
   update() {}
 }
