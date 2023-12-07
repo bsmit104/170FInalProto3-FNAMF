@@ -88,6 +88,19 @@ class C1 extends CustomScene {
     constructor() {
         super('C1', 'spawnfor2others');
     }
+
+    preload() {
+        super.preload();
+
+        this.load.image('funGuy', 'funGuy.png');
+    }
+
+    create() {
+        super.create();
+    
+        const funGuy = this.add.image(500, 500, 'funGuy');
+        this.setMapSizes(funGuy);
+    }
 }
 
 class C2 extends CustomScene {
