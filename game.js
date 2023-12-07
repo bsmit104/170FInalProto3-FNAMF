@@ -7,7 +7,7 @@ let cursor;
 let lastCam = "C1";
 var timer;
 var timerText;
-let globalTimer = 240;
+let globalTimer = 10000; //240
 // let GameStarting = true;
 
 // main game object

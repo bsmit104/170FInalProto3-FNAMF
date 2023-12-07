@@ -37,37 +37,40 @@ class Gameplay extends Phaser.Scene {
     // this.timerText = this.add.text(600, 600, 'Timer: ' + globalTimer.toFixed(2), { fontSize: '100px', fill: '#FFFFFF' });
     this.timerText = this.add.text(600, 600, 'Timer: ' + globalTimer, { fontSize: '100px', fill: '#FFFFFF' });
 
-    this.updateTimer();
+    //this.updateTimer();
 
-    // Create a timer event that repeats every second
     this.time.addEvent({
       delay: 1000,
-      callback: this.updateTimer,
+      callback: () => this.updateTimer(),
       callbackScope: this,
-      loop: true
+      loop: false
     });
+    // this.time.addEvent({
+    //   delay: 1000,
+    //   callback: () => this.updateTimer(),
+    //   callbackScope: this,
+    //   loop: true
+    // });
+        //Create a timer event that repeats every second
+        // this.time.addEvent({
+        //   delay: 1000,
+        //   callback: this.updateTimer,
+        //   callbackScope: this,
+        //   loop: true
+        // });
   }
 
   updateTimer() {
     // Update the global timer
     globalTimer--;
-
+    console.log(globalTimer);
     // Update the text content to display the updated timer value
     // this.timerText.setText("Timer: " + globalTimer.toFixed(2));
     this.timerText.setText("Timer: " + this.formatTime(globalTimer));
   }
 
   update() {
-    // Update the global timer
-    // console.log(globalTimer);
-    // // globalTimer -= this.time.deltaTime / 1000;
-    // let deltaTime = this.time.deltaTime / 1000;
-
-    // // Update the global timer
-    // globalTimer -= deltaTime;
-
-    // Update the text content to display the updated timer value
-    //this.timerText.setText("Timer: " + globalTimer.toFixed(2));
+    this.updateTimer();
 
     this.cameras.main.centerOnX(this.input.activePointer.x);
 

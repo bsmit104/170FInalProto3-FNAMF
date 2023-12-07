@@ -72,20 +72,55 @@ class C1 extends CustomScene {
                    this.scene.start('Gameplay');
                }
                //////////////////////////////////////////////
+            //    this.timerText = this.add.text(600, 600, 'Timer: ' + globalTimer, { fontSize: '100px', fill: '#FFFFFF' });
+            //    this.timerText.setDepth(1);
+
+            //    this.time.addEvent({
+            //     delay: 0,
+            //     callback: () => this.updateTimer(),
+            //     callbackScope: this,
+            //     loop: false
+            //   });
                this.time.addEvent({
                 delay: 1000,
-                callback: this.updateTimer,
+                callback: () => this.updateTimer(),
                 callbackScope: this,
-                loop: true
+                loop: false
               });
     }
 
     updateTimer() {
+        console.log("C1 updateTimer called");
         // Update the global timer
         globalTimer--;
+        console.log("dec");
+        console.log(globalTimer);
       }
 
     update() {
+        //this.updateTimer();
+        // if (!this.timerEvent) {
+        //     this.timerEvent = this.time.addEvent({
+        //         delay: 1000,
+        //         callback: () => this.updateTimer(),
+        //         callbackScope: this,
+        //         loop: true
+        //     });
+        // }
+            // Create a timer event that repeats every second
         //globalTimer -= this.time.deltaTime / 1000;
     }
+
+    formatTime(seconds) {
+        let minutes = Math.floor(seconds / 60);
+        let remainingSeconds = seconds % 60;
+        let formattedTime = minutes.toString().padStart(2, '0') + ':' + remainingSeconds.toFixed(2);
+        
+        // Remove trailing '.00' if present
+        if (formattedTime.endsWith('.00')) {
+          formattedTime = formattedTime.substring(0, formattedTime.length - 3);
+        }
+    
+        return formattedTime;
+      }
 }

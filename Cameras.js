@@ -30,7 +30,28 @@ class CustomScene extends Phaser.Scene {
         if (cursors.down.isDown) {
             this.scene.start('Gameplay');
         }
+
+        // this.time.addEvent({
+        //     delay: 1000,
+        //     callback: this.updateTimer,
+        //     callbackScope: this,
+        //     loop: true
+        //   });
+        this.time.addEvent({
+            delay: 1000,
+            callback: () => this.updateTimer(),
+            callbackScope: this,
+            loop: false
+          });
     }
+
+    updateTimer() {
+        console.log("C1 updateTimer called");
+        // Update the global timer
+        globalTimer--;
+        console.log("dec");
+        console.log(globalTimer);
+      }
 
     createMapButtons() {
         const mapText = this.add.text(1580, 670, 'Map:');
@@ -59,7 +80,7 @@ class CustomScene extends Phaser.Scene {
     }
 
     update() {
-        
+        this.updateTimer();
     }
 }
 
