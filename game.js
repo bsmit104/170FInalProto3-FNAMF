@@ -7,6 +7,10 @@ let cursor;
 let lastCam = "C1";
 var timer;
 var timerText;
+let door1;
+let door2;
+let light1;
+let light2;
 let globalTimer = 10000; //240
 // let GameStarting = true;
 

@@ -5,8 +5,11 @@ class Gameplay extends Phaser.Scene {
 
   preload() {
     this.load.path = "./assets/";
-    this.load.image("office", "Office.png");
+    this.load.image("office", "PlayerRoomLonger.png");
     this.load.image("cam", "camera.png");
+    this.load.image("door", "H1Door.png");
+    this.load.image("button", "amanita.png");
+    this.load.image("light", "DoorOpen.png");
   }
 
   setMapSizes(x) {
@@ -29,15 +32,12 @@ class Gameplay extends Phaser.Scene {
       cursor.x = pointer.x;
     });
 
-    const background = this.add.image(960, 540, "office").setOrigin(0.5, 0.5);
-    background.setScale(5.2);
+    const background = this.add.image(960, 640, "office").setOrigin(0.5, 0.5);
+    background.setScale(4.2);
     ///////////////////////////////////////////////////////
 
     ////////////////////Timer//////////////////////////
-    // this.timerText = this.add.text(600, 600, 'Timer: ' + globalTimer.toFixed(2), { fontSize: '100px', fill: '#FFFFFF' });
     this.timerText = this.add.text(600, 600, 'Timer: ' + globalTimer, { fontSize: '100px', fill: '#FFFFFF' });
-
-    //this.updateTimer();
 
     this.time.addEvent({
       delay: 1000,
@@ -45,27 +45,36 @@ class Gameplay extends Phaser.Scene {
       callbackScope: this,
       loop: false
     });
-    // this.time.addEvent({
-    //   delay: 1000,
-    //   callback: () => this.updateTimer(),
-    //   callbackScope: this,
-    //   loop: true
-    // });
-        //Create a timer event that repeats every second
-        // this.time.addEvent({
-        //   delay: 1000,
-        //   callback: this.updateTimer,
-        //   callbackScope: this,
-        //   loop: true
-        // });
+
+    door1 = this.createDoor(95, 335, 3, 'door');
+    door2 = this.createDoor(1875, 335, 3, 'door');
+
+    light1 = this.createDoor(95, 335, 1, 'light');
+    light2 = this.createDoor(1875, 335, 1, 'light');
+
+    this.createButton(100, 100, door1);
+    this.createButton(1800, 100, door2);
+
+    this.createButton(200, 100, light1);
+    this.createButton(1900, 100, light2);
+  }
+
+  createDoor(x, y, z, k) {
+    const door = this.add.image(x, y, k).setInteractive();
+    door.setVisible(true);
+    door.setScale(4);
+    door.setDepth(z);
+    return door;
+  }
+
+  createButton(x, y, door) {
+    const button = this.add.image(x, y, 'button').setInteractive();
+    button.on('pointerdown', () => this.toggleDoor(door), this);
   }
 
   updateTimer() {
-    // Update the global timer
     globalTimer--;
     console.log(globalTimer);
-    // Update the text content to display the updated timer value
-    // this.timerText.setText("Timer: " + globalTimer.toFixed(2));
     this.timerText.setText("Timer: " + this.formatTime(globalTimer));
   }
 
@@ -79,12 +88,15 @@ class Gameplay extends Phaser.Scene {
     }
   }
 
+  toggleDoor(door) {
+    door.setVisible(!door.visible);
+  }
+
   formatTime(seconds) {
     let minutes = Math.floor(seconds / 60);
     let remainingSeconds = seconds % 60;
     let formattedTime = minutes.toString().padStart(2, '0') + ':' + remainingSeconds.toFixed(2);
-    
-    // Remove trailing '.00' if present
+
     if (formattedTime.endsWith('.00')) {
       formattedTime = formattedTime.substring(0, formattedTime.length - 3);
     }
