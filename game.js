@@ -11,7 +11,7 @@ let door1;
 let door2;
 let light1;
 let light2;
-let globalTimer = 10000; //240
+let globalTimer = 4000; //240
 // let GameStarting = true;
 
 // main game object
