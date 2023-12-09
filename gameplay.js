@@ -10,6 +10,7 @@ class Gameplay extends Phaser.Scene {
     this.load.image("door", "H1Door.png");
     this.load.image("button", "amanita.png");
     this.load.image("light", "DoorOpen.png");
+    this.load.image('funGuy', 'funGuyMob.png');
   }
 
   setMapSizes(x) {
@@ -19,6 +20,8 @@ class Gameplay extends Phaser.Scene {
   }
 
   create() {
+    door1Open = false;
+    door2Open = false;
     //////////Initial game movement and set up////////////
     this.cameras.main.setBackgroundColor("#000000");
 
@@ -57,11 +60,16 @@ class Gameplay extends Phaser.Scene {
 
     this.createButton(200, 100, light1);
     this.createButton(1900, 100, light2);
+
+    /////////////jumpscares/////////////////
+    this.funGuyJump = this.add.image(500, 500, 'funGuy');
+    this.funGuyJump.setVisible(false);
+    this.funGuyJump.setScale(20);
   }
 
   createDoor(x, y, z, k) {
     const door = this.add.image(x, y, k).setInteractive();
-    door.setVisible(true);
+    door.setVisible(false);
     door.setScale(4);
     door.setDepth(z);
     return door;
@@ -74,7 +82,8 @@ class Gameplay extends Phaser.Scene {
 
   updateTimer() {
     globalTimer--;
-    console.log(globalTimer);
+    FunGuyRunTick --;
+    // console.log(globalTimer);
     this.timerText.setText("Timer: " + this.formatTime(globalTimer));
   }
 
@@ -86,10 +95,36 @@ class Gameplay extends Phaser.Scene {
     if (cursors.down.isDown) {
       this.scene.start(lastCam);
     }
+
+    if (FunGuyRunTick < 0) {
+      if (door1Open) {
+        //gameover
+        this.funGuyJump.setVisible(true);
+        /////add game reset button
+        /////reset game values
+        /////jump scare sound
+      }
+      else if (door1Open == false) {
+        FunGuyRunTick = 300;
+      }
+    }
+
+    // if (FunGuyRunTick < 30) {
+    //   //playsound
+
+    // }
   }
 
   toggleDoor(door) {
     door.setVisible(!door.visible);
+    if (door == door1) {
+      door1Open = !door1Open;
+    }
+    else if (door == door2) {
+      door2Open = !door2Open;
+    }
+    console.log(door1Open);
+    console.log(door2Open);
   }
 
   formatTime(seconds) {

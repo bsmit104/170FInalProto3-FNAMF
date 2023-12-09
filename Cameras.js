@@ -43,14 +43,24 @@ class CustomScene extends Phaser.Scene {
             callbackScope: this,
             loop: false
           });
+
+          this.time.addEvent({
+            delay: 1000,
+            callback: () => this.updateTimer(),
+            callbackScope: this,
+            loop: false
+          });
+
+        
     }
 
     updateTimer() {
-        console.log("C1 updateTimer called");
+        //console.log("C1 updateTimer called");
         // Update the global timer
         globalTimer--;
-        console.log("dec");
-        console.log(globalTimer);
+        FunGuyRunTick --;
+        // console.log("dec");
+        // console.log(globalTimer);
       }
 
     createMapButtons() {
@@ -92,14 +102,51 @@ class C1 extends CustomScene {
     preload() {
         super.preload();
 
-        this.load.image('funGuy', 'funGuy.png');
+        this.load.image('funGuy', 'funGuyMob.png');
     }
 
     create() {
         super.create();
     
-        const funGuy = this.add.image(500, 500, 'funGuy');
-        this.setMapSizes(funGuy);
+        this.funGuyPhase1 = this.add.image(500, 500, 'funGuy');
+        this.setMapSizes(this.funGuyPhase1);
+        this.funGuyPhase1.setVisible(true);
+
+        this.funGuyPhase2 = this.add.image(800, 700, 'funGuy');
+        this.setMapSizes(this.funGuyPhase2);
+        this.funGuyPhase2.setVisible(false);
+        this.funGuyPhase2.setScale(2);
+
+        this.funGuyPhase3 = this.add.image(600, 900, 'funGuy');
+        this.setMapSizes(this.funGuyPhase3);
+        this.funGuyPhase3.setVisible(false);
+        this.funGuyPhase3.setScale(9);
+
+        console.log(FunGuyRunTick);
+        FunGuyRunTick += 100;
+    }
+
+    update() {
+        this.updateTimer();
+
+        console.log(FunGuyRunTick);
+        if (FunGuyRunTick < 500) {
+            this.funGuyPhase1.setVisible(false);
+            this.funGuyPhase2.setVisible(true);
+            this.funGuyPhase3.setVisible(false);
+        }
+        
+        if (FunGuyRunTick < 300) {
+            this.funGuyPhase1.setVisible(false);
+            this.funGuyPhase2.setVisible(false);
+            this.funGuyPhase3.setVisible(true);
+        }
+
+        if (FunGuyRunTick > 500) {
+            this.funGuyPhase1.setVisible(true);
+            this.funGuyPhase2.setVisible(false);
+            this.funGuyPhase3.setVisible(false);
+        }
     }
 }
 
