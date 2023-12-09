@@ -53,6 +53,8 @@ class Gameplay extends Phaser.Scene {
     this.timerText = this.add.text(600, 600, 'Timer: ' + globalTimer, { fontSize: '100px', fill: '#FFFFFF' });
     this.PowerText = this.add.text(600, 700, 'Power: ' + globalPower, { fontSize: '100px', fill: '#FFFFFF' });
 
+    this.add.text(700, 1000, 'down key for cams', { fontSize: '50px', fill: '#FFFFFF' });
+
     this.time.addEvent({
       delay: 1000,
       callback: () => this.updateTimer(),
