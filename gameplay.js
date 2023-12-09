@@ -1,3 +1,4 @@
+///////////////////DOOR LOGIC IS SWAPPED OPEN = TRUE is CLOSED/////////////////
 class Gameplay extends Phaser.Scene {
   constructor() {
     super("Gameplay");
@@ -22,6 +23,8 @@ class Gameplay extends Phaser.Scene {
   create() {
     door1Open = false;
     door2Open = false;
+    light2On = false;
+    light1On = false;
     //////////Initial game movement and set up////////////
     this.cameras.main.setBackgroundColor("#000000");
 
@@ -41,6 +44,7 @@ class Gameplay extends Phaser.Scene {
 
     ////////////////////Timer//////////////////////////
     this.timerText = this.add.text(600, 600, 'Timer: ' + globalTimer, { fontSize: '100px', fill: '#FFFFFF' });
+    this.PowerText = this.add.text(600, 700, 'Power: ' + globalPower, { fontSize: '100px', fill: '#FFFFFF' });
 
     this.time.addEvent({
       delay: 1000,
@@ -87,6 +91,12 @@ class Gameplay extends Phaser.Scene {
     this.timerText.setText("Timer: " + this.formatTime(globalTimer));
   }
 
+  updatePower() {
+    globalPower--;
+    // console.log(globalTimer);
+    this.PowerText.setText("Power: " + globalPower);
+  }
+
   update() {
     this.updateTimer();
 
@@ -109,6 +119,10 @@ class Gameplay extends Phaser.Scene {
       }
     }
 
+    if (door1Open == true || door2Open == true || light1On == true || light2On == true) {
+      this.updatePower();
+    }
+
     // if (FunGuyRunTick < 30) {
     //   //playsound
 
@@ -122,6 +136,12 @@ class Gameplay extends Phaser.Scene {
     }
     else if (door == door2) {
       door2Open = !door2Open;
+    }
+    else if (door == light1) {
+      light1On = !light1On;
+    }
+    else if (door == light2) {
+      light2On = !light2On;
     }
     console.log(door1Open);
     console.log(door2Open);

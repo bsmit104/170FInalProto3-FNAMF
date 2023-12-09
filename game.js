@@ -12,9 +12,12 @@ let door2;
 let light1;
 let light2;
 let globalTimer = 4000; //240
+let globalPower = 1000;
 let FunGuyRunTick = 600;
 let door1Open = true;
 let door2Open = true;
+let light1On = false;
+let light2On = false;
 // let GameStarting = true;
 
 // main game object
