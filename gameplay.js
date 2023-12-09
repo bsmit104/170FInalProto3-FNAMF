@@ -106,8 +106,9 @@ class Gameplay extends Phaser.Scene {
       this.scene.start(lastCam);
     }
 
+    console.log(FunGuyRunTick);
     if (FunGuyRunTick < 0) {
-      if (door1Open) {
+      if (door1Open == false) {
         //gameover
         this.funGuyJump.setVisible(true);
         /////add game reset button
