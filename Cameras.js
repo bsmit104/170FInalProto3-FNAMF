@@ -59,9 +59,71 @@ class CustomScene extends Phaser.Scene {
         // Update the global timer
         globalTimer--;
         FunGuyRunTick --;
+        moveTick --;
         // console.log("dec");
         // console.log(globalTimer);
       }
+
+      setRandomBool() {
+        // Create an array of boolean variables
+        var boolArray = [bool1, bool2, bool3, bool4, bool5, bool6, bool7];
+    
+        // Randomly select an index
+        var randomIndex = Phaser.Math.Between(0, boolArray.length - 1);
+    
+        // Set all booleans to false
+        boolArray = boolArray.map(function () {
+            return false;
+        });
+    
+        // Set the randomly selected boolean to true
+        boolArray[randomIndex] = true;
+    
+        // Update the original boolean variables
+        bool1 = boolArray[0];
+        bool2 = boolArray[1];
+        bool3 = boolArray[2];
+        bool4 = boolArray[3];
+        bool5 = boolArray[4];
+        bool6 = boolArray[5];
+        bool7 = boolArray[6];
+    
+        // Define the rules for the next valid booleans based on the current state
+        var validNextBools = {
+            bool1: [bool7, bool6, bool5],
+            bool2: [bool6, bool4],
+            bool3: [bool7],
+            bool4: [bool2],
+            bool5: [bool1, bool6],
+            bool6: [bool1, bool5, bool2],
+            bool7: [bool3, bool1],
+        };
+    
+        // Check and update the next valid booleans based on the rules
+        var nextValidBools = validNextBools["bool" + (randomIndex + 1)];
+        nextValidBools.forEach(function (nextBool, index) {
+            boolArray[index] = nextBool;
+        });
+    
+        // Update the original boolean variables after considering the rules
+        bool1 = boolArray[0];
+        bool2 = boolArray[1];
+        bool3 = boolArray[2];
+        bool4 = boolArray[3];
+        bool5 = boolArray[4];
+        bool6 = boolArray[5];
+        bool7 = boolArray[6];
+
+        // console.log(bool1);
+        // console.log(bool2);
+        // console.log(bool3);
+        // console.log(bool4);
+        // console.log(bool5);
+        // console.log(bool6);
+        // console.log(bool7);
+    
+        moveTick = 150; // Could set to random move time
+    }
 
     createMapButtons() {
         const mapText = this.add.text(1580, 670, 'Map:');
@@ -91,12 +153,16 @@ class CustomScene extends Phaser.Scene {
 
     update() {
         this.updateTimer();
+
+        if (moveTick < 0) {
+            this.setRandomBool();
+        }
     }
 }
 
-class C1 extends CustomScene {
+class C5 extends CustomScene {
     constructor() {
-        super('C1', 'spawnfor2others');
+        super('C5', 'spawnfor2others');
     }
 
     preload() {
@@ -122,14 +188,15 @@ class C1 extends CustomScene {
         this.funGuyPhase3.setVisible(false);
         this.funGuyPhase3.setScale(9);
 
-        console.log(FunGuyRunTick);
+        // console.log(FunGuyRunTick);
+        // console.log(moveTick);
         FunGuyRunTick += 100;
     }
 
     update() {
         this.updateTimer();
 
-        console.log(FunGuyRunTick);
+        // console.log(FunGuyRunTick);
         if (FunGuyRunTick < 500) {
             this.funGuyPhase1.setVisible(false);
             this.funGuyPhase2.setVisible(true);
@@ -154,11 +221,69 @@ class C2 extends CustomScene {
     constructor() {
         super('C2', 'field');
     }
+
+    preload() {
+        super.preload();
+        this.load.image('other', 'OtherMushroom.png');
+    }
+
+    create() {
+
+        super.create();
+
+        this.other = this.add.image(500, 500, 'other');
+        this.other.setVisible(false);
+        this.other.setScale(4);
+    }
+
+    update() {
+        if (bool2) {
+            this.other.setVisible(true);
+        }
+        else {
+            this.other.setVisible(false);
+        }
+
+        this.updateTimer();
+
+        if (moveTick < 0) {
+            this.setRandomBool();
+        }
+    }
 }
 
 class C3 extends CustomScene {
     constructor() {
         super('C3', 'graveyard');
+    }
+
+    preload() {
+        super.preload();
+        this.load.image('other', 'OtherMushroom.png');
+    }
+
+    create() {
+
+        super.create();
+
+        this.other = this.add.image(500, 500, 'other');
+        this.other.setVisible(false);
+        this.other.setScale(4);
+    }
+
+    update() {
+        if (bool3) {
+            this.other.setVisible(true);
+        }
+        else {
+            this.other.setVisible(false);
+        }
+
+        this.updateTimer();
+
+        if (moveTick < 0) {
+            this.setRandomBool();
+        }
     }
 }
 
@@ -166,11 +291,69 @@ class C4 extends CustomScene {
     constructor() {
         super('C4', 'pond');
     }
+
+    preload() {
+        super.preload();
+        this.load.image('other', 'OtherMushroom.png');
+    }
+
+    create() {
+
+        super.create();
+
+        this.other = this.add.image(500, 500, 'other');
+        this.other.setVisible(false);
+        this.other.setScale(4);
+    }
+
+    update() {
+        if (bool4) {
+            this.other.setVisible(true);
+        }
+        else {
+            this.other.setVisible(false);
+        }
+
+        this.updateTimer();
+
+        if (moveTick < 0) {
+            this.setRandomBool();
+        }
+    }
 }
 
-class C5 extends CustomScene {
+class C1 extends CustomScene {
     constructor() {
-        super('C5', 'fairyCircle');
+        super('C1', 'fairyCircle');
+    }
+
+    preload() {
+        super.preload();
+        this.load.image('other', 'OtherMushroom.png');
+    }
+
+    create() {
+
+        super.create();
+
+        this.other = this.add.image(500, 500, 'other');
+        this.other.setVisible(false);
+        this.other.setScale(4);
+    }
+
+    update() {
+        if (bool5) {
+            this.other.setVisible(true);
+        }
+        else {
+            this.other.setVisible(false);
+        }
+
+        this.updateTimer();
+
+        if (moveTick < 0) {
+            this.setRandomBool();
+        }
     }
 }
 
@@ -178,10 +361,68 @@ class C6 extends CustomScene {
     constructor() {
         super('C6', 'H1');
     }
+
+    preload() {
+        super.preload();
+        this.load.image('other', 'OtherMushroom.png');
+    }
+
+    create() {
+
+        super.create();
+
+        this.other = this.add.image(500, 500, 'other');
+        this.other.setVisible(false);
+        this.other.setScale(4);
+    }
+
+    update() {
+        if (bool6) {
+            this.other.setVisible(true);
+        }
+        else {
+            this.other.setVisible(false);
+        }
+
+        this.updateTimer();
+
+        if (moveTick < 0) {
+            this.setRandomBool();
+        }
+    }
 }
 
 class C7 extends CustomScene {
     constructor() {
         super('C7', 'H2');
+    }
+
+    preload() {
+        super.preload();
+        this.load.image('other', 'OtherMushroom.png');
+    }
+
+    create() {
+
+        super.create();
+
+        this.other = this.add.image(500, 500, 'other');
+        this.other.setVisible(false);
+        this.other.setScale(4);
+    }
+
+    update() {
+        if (bool7) {
+            this.other.setVisible(true);
+        }
+        else {
+            this.other.setVisible(false);
+        }
+
+        this.updateTimer();
+
+        if (moveTick < 0) {
+            this.setRandomBool();
+        }
     }
 }

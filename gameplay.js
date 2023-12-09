@@ -12,6 +12,8 @@ class Gameplay extends Phaser.Scene {
     this.load.image("button", "amanita.png");
     this.load.image("light", "DoorOpen.png");
     this.load.image('funGuy', 'funGuyMob.png');
+    this.load.image('dark', 'lightsOff.png');
+    this.load.image('other', 'OtherMushroom.png');
   }
 
   setMapSizes(x) {
@@ -38,8 +40,13 @@ class Gameplay extends Phaser.Scene {
       cursor.x = pointer.x;
     });
 
-    const background = this.add.image(960, 640, "office").setOrigin(0.5, 0.5);
-    background.setScale(4.2);
+    this.background = this.add.image(960, 640, "office").setOrigin(0.5, 0.5);
+    this.background.setScale(4.2);
+    this.background.setVisible(true);
+
+    this.darkbackground = this.add.image(960, 640, "dark").setOrigin(0.5, 0.5);
+    this.darkbackground.setScale(4.2);
+    this.darkbackground.setVisible(false);
     ///////////////////////////////////////////////////////
 
     ////////////////////Timer//////////////////////////
@@ -69,7 +76,68 @@ class Gameplay extends Phaser.Scene {
     this.funGuyJump = this.add.image(500, 500, 'funGuy');
     this.funGuyJump.setVisible(false);
     this.funGuyJump.setScale(20);
+
+    this.otherJump = this.add.image(700, 500, 'other');
+    this.otherJump.setVisible(false);
+    this.otherJump.setScale(20);
+
+    this.other = this.add.image(1875, 335, 'other');
+        this.other.setVisible(false);
+        this.other.setScale(4);
   }
+
+  setRandomBool() {
+    // Create an array of boolean variables
+    var boolArray = [bool1, bool2, bool3, bool4, bool5, bool6, bool7];
+
+    // Randomly select an index
+    var randomIndex = Phaser.Math.Between(0, boolArray.length - 1);
+
+    // Set all booleans to false
+    boolArray = boolArray.map(function () {
+        return false;
+    });
+
+    // Set the randomly selected boolean to true
+    boolArray[randomIndex] = true;
+
+    // Update the original boolean variables
+    bool1 = boolArray[0];
+    bool2 = boolArray[1];
+    bool3 = boolArray[2];
+    bool4 = boolArray[3];
+    bool5 = boolArray[4];
+    bool6 = boolArray[5];
+    bool7 = boolArray[6];
+
+    // Define the rules for the next valid booleans based on the current state
+    var validNextBools = {
+        bool1: [bool7, bool6, bool5],
+        bool2: [bool6, bool4],
+        bool3: [bool7],
+        bool4: [bool2],
+        bool5: [bool1, bool6],
+        bool6: [bool1, bool5, bool2],
+        bool7: [bool3, bool1],
+    };
+
+    // Check and update the next valid booleans based on the rules
+    var nextValidBools = validNextBools["bool" + (randomIndex + 1)];
+    nextValidBools.forEach(function (nextBool, index) {
+        boolArray[index] = nextBool;
+    });
+
+    // Update the original boolean variables after considering the rules
+    bool1 = boolArray[0];
+    bool2 = boolArray[1];
+    bool3 = boolArray[2];
+    bool4 = boolArray[3];
+    bool5 = boolArray[4];
+    bool6 = boolArray[5];
+    bool7 = boolArray[6];
+
+    moveTick = 150; // Could set to random move time
+}
 
   createDoor(x, y, z, k) {
     const door = this.add.image(x, y, k).setInteractive();
@@ -87,6 +155,7 @@ class Gameplay extends Phaser.Scene {
   updateTimer() {
     globalTimer--;
     FunGuyRunTick --;
+    moveTick --;
     // console.log(globalTimer);
     this.timerText.setText("Timer: " + this.formatTime(globalTimer));
   }
@@ -106,7 +175,7 @@ class Gameplay extends Phaser.Scene {
       this.scene.start(lastCam);
     }
 
-    console.log(FunGuyRunTick);
+    // console.log(FunGuyRunTick);
     if (FunGuyRunTick < 0) {
       if (door1Open == false) {
         //gameover
@@ -120,10 +189,48 @@ class Gameplay extends Phaser.Scene {
       }
     }
 
+    if (bool5 == true) {
+        this.other.setVisible(true);
+      if (door1Open == false) {
+        //wait 3 seconds
+        const attackprob = [1000, 2000, 3000][Math.floor(Math.random() * 3)];
+        setTimeout(() => {
+          if (door1Open == false) {
+          this.other.setVisible(false);
+          this.otherJump.setVisible(true);
+          /////add game reset button
+          /////reset game values
+          /////jump scare sound
+          }
+      }, attackprob);
+      }
+    }
+
     if (door1Open == true || door2Open == true || light1On == true || light2On == true) {
       this.updatePower();
     }
 
+    if (globalPower < 0) {
+      this.background.setVisible(false);
+      this.darkbackground.setVisible(true);
+      door1.setVisible(false);
+      door2.setVisible(false);
+      light1.setVisible(false);
+      light2.setVisible(false);
+      door1Open = false;
+      door2Open = false;
+      light1On = false;
+      light2On = false;
+
+      this.input.enabled = false;
+      // Enable button interaction when power is greater than or equal to 0
+    }
+
+    if (moveTick < 0) {
+      this.setRandomBool();
+      // console.log("moved");
+    }
+    // console.log(moveTick);
     // if (FunGuyRunTick < 30) {
     //   //playsound
 
@@ -144,8 +251,8 @@ class Gameplay extends Phaser.Scene {
     else if (door == light2) {
       light2On = !light2On;
     }
-    console.log(door1Open);
-    console.log(door2Open);
+    // console.log(door1Open);
+    // console.log(door2Open);
   }
 
   formatTime(seconds) {

@@ -14,10 +14,18 @@ let light2;
 let globalTimer = 2000; //240
 let globalPower = 100;
 let FunGuyRunTick = 600;
+let moveTick = 100;
 let door1Open = true;
 let door2Open = true;
 let light1On = false;
 let light2On = false;
+var bool1 = false;
+var bool2 = true;
+var bool3 = false;
+var bool4 = false;
+var bool5 = false;
+var bool6 = false;
+var bool7 = false;
 // let GameStarting = true;
 
 // main game object
