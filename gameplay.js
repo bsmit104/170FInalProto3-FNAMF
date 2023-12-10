@@ -227,6 +227,10 @@ class Gameplay extends Phaser.Scene {
       this.run.play();
     }
 
+    if (globalTimer < 0) {
+      this.scene.start("Win");
+    }
+
     // console.log(FunGuyRunTick);
     if (FunGuyRunTick < 0) {
       if (door1Open == false) {

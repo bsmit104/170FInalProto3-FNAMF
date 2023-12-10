@@ -1,6 +1,6 @@
 class Win extends Phaser.Scene {
   constructor() {
-    super("win");
+    super("Win");
   }
   preload() {
     this.load.path = "./assets/";

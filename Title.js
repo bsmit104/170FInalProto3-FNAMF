@@ -1,6 +1,6 @@
 class Title extends Phaser.Scene {
     constructor() {
-        super('title');
+        super('Title');
     }
     preload() {
         this.load.path = "./assets/";
