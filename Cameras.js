@@ -145,6 +145,73 @@ class CustomScene extends Phaser.Scene {
         moveTick = 150; // Could set to random move time
     }
 
+    // setRandomBool() {
+    //     // Create an array of boolean variables
+    //     //var boolArray = [bool1, bool2, bool3, bool4, bool5, bool6, bool7];
+    
+    //     // Randomly select an index
+    //     //var randomIndex = Phaser.Math.Between(0, boolArray.length - 1);
+    
+    //     if (bool1) {
+    //         boolArray = [bool7, bool6, bool5];
+    //     }
+    //     if (bool3) {
+    //         boolArray = [bool6, bool4];
+    //     }
+    //     if (bool3) {
+    //         boolArray = [bool7];
+    //     }
+    //     if (bool4) {
+    //         boolArray = [bool2];
+    //     }
+    //     if (bool5) {
+    //         boolArray = [bool1, bool6];
+    //     }
+    //     if (bool6) {
+    //         boolArray = [bool1, bool5, bool2];
+    //     }
+    //     if (bool7) {
+    //         boolArray = [bool3, bool1];
+    //     }
+
+    //     bool1 = false;
+    //     bool2 = false;
+    //     bool3 = false;
+    //     bool4 = false;
+    //     bool5 = false;
+    //     bool6 = false;
+    //     bool7 = false;
+
+    //     // Set all booleans to false
+    //     boolArray = boolArray.map(function () {
+    //         return false;
+    //     });
+
+    //     var randomIndex = Phaser.Math.Between(0, boolArray.length - 1);
+    
+    //     // Set the randomly selected boolean to true
+    //     boolArray[randomIndex] = true;
+    
+    //     // Update the original boolean variables after considering the rules
+    //     bool1 = boolArray[0];
+    //     bool2 = boolArray[1];
+    //     bool3 = boolArray[2];
+    //     bool4 = boolArray[3];
+    //     bool5 = boolArray[4];
+    //     bool6 = boolArray[5];
+    //     bool7 = boolArray[6];
+
+    //     console.log(bool1);
+    //     console.log(bool2);
+    //     console.log(bool3);
+    //     console.log(bool4);
+    //     console.log(bool5);
+    //     console.log(bool6);
+    //     console.log(bool7);
+    
+    //     moveTick = 150; // Could set to random move time
+    // }
+
     createMapButtons() {
         const mapText = this.add.text(1580, 670, 'Map:');
         this.setMapSizes(mapText);

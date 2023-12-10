@@ -27,6 +27,7 @@ var bool5 = false;
 var bool6 = false;
 var bool7 = false;
 let screamOnce = true;
+var boolArray = [bool1, bool2, bool3, bool4, bool5, bool6, bool7];
 // let GameStarting = true;
 
 // main game object
