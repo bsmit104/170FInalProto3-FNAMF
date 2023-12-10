@@ -189,7 +189,7 @@ class C5 extends CustomScene {
 
     preload() {
         super.preload();
-        this.load.path = "./assets/";
+        //this.load.path = "./assets/";
         this.load.image('funGuy', 'FunGuyMob.png');
     }
 
