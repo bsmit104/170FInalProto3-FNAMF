@@ -12,7 +12,7 @@ let door2;
 let light1;
 let light2;
 let globalTimer = 2000; //240
-let globalPower = 100;
+let globalPower = 500;
 let FunGuyRunTick = 600;
 let moveTick = 100;
 let door1Open = true;
@@ -53,7 +53,7 @@ let config = {
               }
         }
     },
-    scene: [Gameplay, C1, C2, C3, C4, C5, C6, C7]
+    scene: [Title, Gameplay, C1, C2, C3, C4, C5, C6, C7, Win]
 };
 
 let game = new Phaser.Game(config);

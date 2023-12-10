@@ -64,6 +64,10 @@ class CustomScene extends Phaser.Scene {
         // console.log(globalTimer);
       }
 
+      updatePower() {
+        globalPower--;
+      }
+
       setRandomBool() {
         // Create an array of boolean variables
         var boolArray = [bool1, bool2, bool3, bool4, bool5, bool6, bool7];
@@ -114,13 +118,13 @@ class CustomScene extends Phaser.Scene {
         bool6 = boolArray[5];
         bool7 = boolArray[6];
 
-        // console.log(bool1);
-        // console.log(bool2);
-        // console.log(bool3);
-        // console.log(bool4);
-        // console.log(bool5);
-        // console.log(bool6);
-        // console.log(bool7);
+        console.log(bool1);
+        console.log(bool2);
+        console.log(bool3);
+        console.log(bool4);
+        console.log(bool5);
+        console.log(bool6);
+        console.log(bool7);
     
         moveTick = 150; // Could set to random move time
     }
@@ -154,6 +158,8 @@ class CustomScene extends Phaser.Scene {
     update() {
         this.updateTimer();
 
+        this.updatePower();
+
         if (moveTick < 0) {
             this.setRandomBool();
         }
@@ -162,7 +168,7 @@ class CustomScene extends Phaser.Scene {
 
 class C5 extends CustomScene {
     constructor() {
-        super('C5', 'spawnfor2others');
+        super('C5', 'H1Room');
     }
 
     preload() {
@@ -190,11 +196,17 @@ class C5 extends CustomScene {
 
         // console.log(FunGuyRunTick);
         // console.log(moveTick);
-        FunGuyRunTick += 100;
+        FunGuyRunTick += 90;
     }
 
     update() {
         this.updateTimer();
+
+        this.updatePower();
+
+        if (globalPower < 0) {
+            this.scene.start('Gameplay');
+        }
 
         // console.log(FunGuyRunTick);
         if (FunGuyRunTick < 500) {
@@ -219,7 +231,7 @@ class C5 extends CustomScene {
 
 class C2 extends CustomScene {
     constructor() {
-        super('C2', 'field');
+        super('C2', 'H2RoomStage');
     }
 
     preload() {
@@ -245,6 +257,12 @@ class C2 extends CustomScene {
         }
 
         this.updateTimer();
+
+        this.updatePower();
+
+        if (globalPower < 0) {
+            this.scene.start('Gameplay');
+        }
 
         if (moveTick < 0) {
             this.setRandomBool();
@@ -281,6 +299,12 @@ class C3 extends CustomScene {
 
         this.updateTimer();
 
+        this.updatePower();
+
+        if (globalPower < 0) {
+            this.scene.start('Gameplay');
+        }
+
         if (moveTick < 0) {
             this.setRandomBool();
         }
@@ -315,6 +339,12 @@ class C4 extends CustomScene {
         }
 
         this.updateTimer();
+
+        this.updatePower();
+
+        if (globalPower < 0) {
+            this.scene.start('Gameplay');
+        }
 
         if (moveTick < 0) {
             this.setRandomBool();
@@ -351,6 +381,12 @@ class C1 extends CustomScene {
 
         this.updateTimer();
 
+        this.updatePower();
+
+        if (globalPower < 0) {
+            this.scene.start('Gameplay');
+        }
+
         if (moveTick < 0) {
             this.setRandomBool();
         }
@@ -386,6 +422,12 @@ class C6 extends CustomScene {
 
         this.updateTimer();
 
+        this.updatePower();
+
+        if (globalPower < 0) {
+            this.scene.start('Gameplay');
+        }
+
         if (moveTick < 0) {
             this.setRandomBool();
         }
@@ -420,6 +462,12 @@ class C7 extends CustomScene {
         }
 
         this.updateTimer();
+
+        this.updatePower();
+
+        if (globalPower < 0) {
+            this.scene.start('Gameplay');
+        }
 
         if (moveTick < 0) {
             this.setRandomBool();

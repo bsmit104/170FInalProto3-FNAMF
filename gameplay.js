@@ -154,6 +154,45 @@ class Gameplay extends Phaser.Scene {
     button.on('pointerdown', () => this.toggleDoor(door), this);
   }
 
+  newGame() {
+    const centerX = this.cameras.main.width / 2;
+    const centerY = this.cameras.main.height / 2;
+    this.add.text(centerX + 450, centerY + 50, "You Died", {
+      fontSize: "100px",
+      fill: "#fff",
+    });
+    const playText = this.add.text(centerX + 450, centerY + 250, "PLAY AGAIN", {
+      fontSize: "100px",
+      fill: "#fff",
+    });
+    playText.setInteractive();
+    playText.on("pointerover", () => {
+      playText.setStyle({ fill: "#3944BC" });
+    });
+    playText.on("pointerout", () => {
+      playText.setStyle({ fill: "#fff" });
+    });
+    playText.on("pointerdown", () => {
+      lastCam = "C1";
+      globalTimer = 2000; //240
+      globalPower = 500;
+      FunGuyRunTick = 600;
+      moveTick = 100;
+      door1Open = true;
+      door2Open = true;
+      light1On = false;
+      light2On = false;
+      bool1 = false;
+      bool2 = true;
+      bool3 = false;
+      bool4 = false;
+      bool5 = false;
+      bool6 = false;
+      bool7 = false;
+      this.scene.start("Gameplay");
+    });
+  }
+
   updateTimer() {
     globalTimer--;
     FunGuyRunTick --;
@@ -182,6 +221,7 @@ class Gameplay extends Phaser.Scene {
       if (door1Open == false) {
         //gameover
         this.funGuyJump.setVisible(true);
+        this.newGame();
         /////add game reset button
         /////reset game values
         /////jump scare sound
@@ -192,7 +232,12 @@ class Gameplay extends Phaser.Scene {
     }
 
     if (bool5 == true) {
+      if (light1On == true) {
         this.other.setVisible(true);
+      }
+      else {
+        this.other.setVisible(false);
+      }
       if (door1Open == false) {
         //wait 3 seconds
         const attackprob = [1000, 2000, 3000][Math.floor(Math.random() * 3)];
@@ -200,6 +245,7 @@ class Gameplay extends Phaser.Scene {
           if (door1Open == false) {
           this.other.setVisible(false);
           this.otherJump.setVisible(true);
+          this.newGame();
           /////add game reset button
           /////reset game values
           /////jump scare sound
