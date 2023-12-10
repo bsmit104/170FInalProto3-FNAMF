@@ -258,7 +258,7 @@ class C2 extends CustomScene {
 
     preload() {
         super.preload();
-        this.load.path = "./assets/";
+        //this.load.path = "./assets/";
         this.load.image('other', 'OtherMushroom.png');
     }
 
@@ -306,7 +306,7 @@ class C3 extends CustomScene {
 
     preload() {
         super.preload();
-        this.load.path = "./assets/";
+        //this.load.path = "./assets/";
         this.load.image('other', 'OtherMushroom.png');
     }
 
@@ -354,7 +354,7 @@ class C4 extends CustomScene {
 
     preload() {
         super.preload();
-        this.load.path = "./assets/";
+        //this.load.path = "./assets/";
         this.load.image('other', 'OtherMushroom.png');
     }
 
@@ -402,7 +402,7 @@ class C1 extends CustomScene {
 
     preload() {
         super.preload();
-        this.load.path = "./assets/";
+        //this.load.path = "./assets/";
         this.load.image('other', 'OtherMushroom.png');
     }
 
@@ -450,7 +450,7 @@ class C6 extends CustomScene {
 
     preload() {
         super.preload();
-        this.load.path = "./assets/";
+        //this.load.path = "./assets/";
         this.load.image('other', 'OtherMushroom.png');
     }
 
@@ -498,7 +498,7 @@ class C7 extends CustomScene {
 
     preload() {
         super.preload();
-        this.load.path = "./assets/";
+        //this.load.path = "./assets/";
         this.load.image('other', 'OtherMushroom.png');
     }
 
