@@ -11,7 +11,7 @@ class Gameplay extends Phaser.Scene {
     this.load.image("door", "H1Door.png");
     this.load.image("button", "amanita.png");
     this.load.image("light", "DoorOpen.png");
-    this.load.image('funGuy', 'funGuyMob.png');
+    this.load.image('funGuy', 'FunGuyMob.png');
     this.load.image('dark', 'lightsOff.png');
     this.load.image('other', 'OtherMushroom.png');
     this.load.audio('scream', 'monsterScream.mp3');
@@ -228,7 +228,7 @@ class Gameplay extends Phaser.Scene {
     }
 
     if (globalTimer < 0) {
-      this.scene.start("Win");
+      this.scene.start("Win")
     }
 
     // console.log(FunGuyRunTick);
