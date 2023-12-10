@@ -8,6 +8,7 @@ class CustomScene extends Phaser.Scene {
         this.load.path = "./assets/";
         this.load.image("cam", "camera.png");
         this.load.image(this.backgroundKey, `${this.backgroundKey}.png`);
+        this.load.audio('run', 'funrun.mp3');
     }
 
     setMapSizes(x) {
@@ -17,6 +18,8 @@ class CustomScene extends Phaser.Scene {
     }
 
     create() {
+        this.run = this.sound.add('run');
+
         lastCam = this.scene.key;
 
         this.cameras.main.setBackgroundColor('#000000');
@@ -52,6 +55,19 @@ class CustomScene extends Phaser.Scene {
           });
 
         
+    }
+
+    funGuyRun() {
+          // console.log(FunGuyRunTick);
+          if (FunGuyRunTick < 0) {
+            if (door1Open == false) {
+              //gameover
+              this.scene.start('Gameplay');
+            }
+            else if (door1Open == false) {
+              FunGuyRunTick = 300;
+            }
+          }
     }
 
     updateTimer() {
@@ -204,9 +220,15 @@ class C5 extends CustomScene {
 
         this.updatePower();
 
+        this.funGuyRun();
+
         if (globalPower < 0) {
             this.scene.start('Gameplay');
         }
+
+        if (FunGuyRunTick < 50) {
+            this.run.play();
+          }
 
         // console.log(FunGuyRunTick);
         if (FunGuyRunTick < 500) {
@@ -256,6 +278,12 @@ class C2 extends CustomScene {
             this.other.setVisible(false);
         }
 
+        if (FunGuyRunTick < 50) {
+            this.run.play();
+          }
+
+        this.funGuyRun();
+
         this.updateTimer();
 
         this.updatePower();
@@ -297,9 +325,15 @@ class C3 extends CustomScene {
             this.other.setVisible(false);
         }
 
+        if (FunGuyRunTick < 50) {
+            this.run.play();
+          }
+
         this.updateTimer();
 
         this.updatePower();
+
+        this.funGuyRun();
 
         if (globalPower < 0) {
             this.scene.start('Gameplay');
@@ -338,7 +372,13 @@ class C4 extends CustomScene {
             this.other.setVisible(false);
         }
 
+        if (FunGuyRunTick < 50) {
+            this.run.play();
+          }
+
         this.updateTimer();
+
+        this.funGuyRun();
 
         this.updatePower();
 
@@ -379,9 +419,15 @@ class C1 extends CustomScene {
             this.other.setVisible(false);
         }
 
+        if (FunGuyRunTick < 50) {
+            this.run.play();
+          }
+
         this.updateTimer();
 
         this.updatePower();
+
+        this.funGuyRun();
 
         if (globalPower < 0) {
             this.scene.start('Gameplay');
@@ -424,9 +470,15 @@ class C6 extends CustomScene {
 
         this.updatePower();
 
+        this.funGuyRun();
+
         if (globalPower < 0) {
             this.scene.start('Gameplay');
         }
+
+        if (FunGuyRunTick < 50) {
+            this.run.play();
+          }
 
         if (moveTick < 0) {
             this.setRandomBool();
@@ -461,9 +513,15 @@ class C7 extends CustomScene {
             this.other.setVisible(false);
         }
 
+        if (FunGuyRunTick < 50) {
+            this.run.play();
+          }
+
         this.updateTimer();
 
         this.updatePower();
+
+        this.funGuyRun();
 
         if (globalPower < 0) {
             this.scene.start('Gameplay');

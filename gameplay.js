@@ -14,6 +14,8 @@ class Gameplay extends Phaser.Scene {
     this.load.image('funGuy', 'funGuyMob.png');
     this.load.image('dark', 'lightsOff.png');
     this.load.image('other', 'OtherMushroom.png');
+    this.load.audio('scream', 'monsterScream.mp3');
+    this.load.audio('run', 'funrun.mp3');
   }
 
   setMapSizes(x) {
@@ -23,6 +25,10 @@ class Gameplay extends Phaser.Scene {
   }
 
   create() {
+
+    this.scream = this.sound.add('scream');
+    this.run = this.sound.add('run');
+
     door1Open = false;
     door2Open = false;
     light2On = false;
@@ -189,6 +195,7 @@ class Gameplay extends Phaser.Scene {
       bool5 = false;
       bool6 = false;
       bool7 = false;
+      screamOnce = true;
       this.scene.start("Gameplay");
     });
   }
@@ -216,11 +223,19 @@ class Gameplay extends Phaser.Scene {
       this.scene.start(lastCam);
     }
 
+    if (FunGuyRunTick < 50) {
+      this.run.play();
+    }
+
     // console.log(FunGuyRunTick);
     if (FunGuyRunTick < 0) {
       if (door1Open == false) {
         //gameover
         this.funGuyJump.setVisible(true);
+        if (screamOnce) {
+          this.scream.play();
+        }
+        screamOnce = false;
         this.newGame();
         /////add game reset button
         /////reset game values
@@ -245,6 +260,10 @@ class Gameplay extends Phaser.Scene {
           if (door1Open == false) {
           this.other.setVisible(false);
           this.otherJump.setVisible(true);
+          if (screamOnce) {
+            this.scream.play();
+          }
+          screamOnce = false;
           this.newGame();
           /////add game reset button
           /////reset game values
