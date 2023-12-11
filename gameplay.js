@@ -240,7 +240,7 @@ class Gameplay extends Phaser.Scene {
       this.scene.start(lastCam);
     }
 
-    if (FunGuyRunTick < 50) {
+    if (FunGuyRunTick < 500) {
       if (runOnce) {
         runOnce = false;
         this.run.play();
@@ -265,7 +265,7 @@ class Gameplay extends Phaser.Scene {
         /////reset game values
         /////jump scare sound
       } else if (door1Open == false) {
-        FunGuyRunTick = 300;
+        FunGuyRunTick = 7000;
       }
     }
 
