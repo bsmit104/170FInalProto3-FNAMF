@@ -17,6 +17,7 @@ class Gameplay extends Phaser.Scene {
     this.load.image("angel", "angel.png");
     this.load.audio("scream", "monsterScream.mp3");
     this.load.audio("run", "funrun.mp3");
+    this.load.audio("fan", "fan.mp3");
   }
 
   setMapSizes(x) {
@@ -26,6 +27,10 @@ class Gameplay extends Phaser.Scene {
   }
 
   create() {
+    this.fan = this.sound.add('fan');
+    this.fan.play();
+    this.fan.loop = true;
+
     this.scream = this.sound.add("scream");
     this.run = this.sound.add("run");
 
@@ -245,6 +250,7 @@ class Gameplay extends Phaser.Scene {
     this.cameras.main.centerOnX(this.input.activePointer.x);
 
     if (cursors.down.isDown) {
+      this.fan.stop();
       this.scene.start(lastCam);
     }
 

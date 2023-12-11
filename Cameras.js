@@ -9,6 +9,7 @@ class CustomScene extends Phaser.Scene {
     this.load.image("cam", "camera.png");
     this.load.image(this.backgroundKey, `${this.backgroundKey}.png`);
     this.load.audio("run", "funrun.mp3");
+    this.load.audio("static", "static.mp3");
     ////might need to remove others
     this.load.image("other", "OtherMushroom.png");
     this.load.image("angel", "angel.png");
@@ -21,6 +22,12 @@ class CustomScene extends Phaser.Scene {
   }
 
   create() {
+    this.static = this.sound.add('static');
+    // this.static.stop();
+    this.sound.stopAll();
+    this.static.play();
+    this.static.loop = true;
+
     this.run = this.sound.add("run");
 
     lastCam = this.scene.key;
@@ -44,6 +51,7 @@ class CustomScene extends Phaser.Scene {
     this.createMapButtons();
 
     if (cursors.down.isDown) {
+      this.static.stop();
       this.scene.start("Gameplay");
     }
 
@@ -73,6 +81,7 @@ class CustomScene extends Phaser.Scene {
     if (FunGuyRunTick < 0) {
       if (door1Open == false) {
         //gameover
+        this.static.stop();
         this.scene.start("Gameplay");
       } else if (door1Open == false) {
         FunGuyRunTick = 300;
@@ -116,6 +125,7 @@ class CustomScene extends Phaser.Scene {
       bool6 = false;
       bool7 = false;
       screamOnce = true;
+      this.static.stop();
       this.scene.start("Gameplay");
     });
   }
@@ -349,7 +359,11 @@ class CustomScene extends Phaser.Scene {
 
     const you = this.add.image(1650, 940, "cam");
     this.setMapSizes(you);
-    you.on("pointerdown", () => this.scene.start("Gameplay"));
+    // you.on("pointerdown", () => this.scene.start("Gameplay"));
+    you.on('pointerdown', () => {
+      this.static.stop();
+      this.scene.start('Gameplay');
+  });
   }
 
   update() {
@@ -408,6 +422,7 @@ class C5 extends CustomScene {
     this.MovinShrooms();
 
     if (globalPower < 0) {
+      this.static.stop();
       this.scene.start("Gameplay");
     }
 
@@ -492,6 +507,7 @@ class C2 extends CustomScene {
     this.updatePower();
 
     if (globalPower < 0) {
+      this.static.stop();
       this.scene.start("Gameplay");
     }
 
@@ -554,6 +570,7 @@ class C3 extends CustomScene {
     this.MovinShrooms();
 
     if (globalPower < 0) {
+      this.static.stop();
       this.scene.start("Gameplay");
     }
 
@@ -616,6 +633,7 @@ class C4 extends CustomScene {
     this.updatePower();
 
     if (globalPower < 0) {
+      this.static.stop();
       this.scene.start("Gameplay");
     }
 
@@ -678,6 +696,7 @@ class C1 extends CustomScene {
     this.funGuyRun();
 
     if (globalPower < 0) {
+      this.static.stop();
       this.scene.start("Gameplay");
     }
 
@@ -733,6 +752,7 @@ class C6 extends CustomScene {
     this.funGuyRun();
 
     if (globalPower < 0) {
+      this.static.stop();
       this.scene.start("Gameplay");
     }
 
@@ -802,6 +822,7 @@ class C7 extends CustomScene {
     this.funGuyRun();
 
     if (globalPower < 0) {
+      this.static.stop();
       this.scene.start("Gameplay");
     }
 

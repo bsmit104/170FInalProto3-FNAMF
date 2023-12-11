@@ -5,8 +5,13 @@ class Title extends Phaser.Scene {
     preload() {
         this.load.path = "./assets/";
         this.load.image('title', 'title.png');
+        this.load.audio("tunez", "spookyMusic.mp3");
     }
     create() {
+        this.levm = this.sound.add('tunez');
+        this.levm.play();
+        this.levm.loop = true;
+
         this.cameras.main.setBackgroundColor('#000000');
         const centerX = this.cameras.main.width / 2;
         const centerY = this.cameras.main.height / 2;
@@ -25,6 +30,7 @@ class Title extends Phaser.Scene {
             playText.setStyle({ fill: '#fff' });
         });
         playText.on('pointerdown', () => {
+            this.levm.stop();
             this.scene.start('Gameplay');
         });
         this.tweens.add({

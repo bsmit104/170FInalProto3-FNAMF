@@ -1,3 +1,7 @@
+// SCREAM AND RUN SFX FROM PIXABAY
+// https://pixabay.com/sound-effects/search/scream/ 
+// https://pixabay.com/sound-effects/search/run/
+
 // tame the javashrek
 'use strict';
 
