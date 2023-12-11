@@ -91,16 +91,20 @@ class Gameplay extends Phaser.Scene {
       fill: "#FFFFFF",
     });
 
-    this.add.text(1500, 1000, "down key for cams", {
-      fontSize: "30px",
+    this.add.text(1300, 1000, "down key for cams", {
+      fontSize: "35px",
       fill: "#FFFFFF",
     });
-    this.add.text(1500, 900, "blue squares for door and lights", {
-      fontSize: "30px",
+    this.add.text(1300, 950, "blue squares for door and lights", {
+      fontSize: "35px",
       fill: "#FFFFFF",
     });
-    this.add.text(1400, 800, "monitor mushrooms, close doors 4 safety", {
-      fontSize: "30px",
+    this.add.text(1300, 900, "monitor mushrooms, close doors 4 safety", {
+      fontSize: "35px",
+      fill: "#FFFFFF",
+    });
+    this.add.text(1300, 850, "grey squares to switch cams", {
+      fontSize: "35px",
       fill: "#FFFFFF",
     });
 
