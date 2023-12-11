@@ -323,7 +323,7 @@ class CustomScene extends Phaser.Scene {
     console.log(bool6);
     console.log(bool7);
 
-    moveTick = 150; // Could set to random move time
+    moveTick = 4000; // Could set to random move time
   }
 
   createMapButtons() {
@@ -395,7 +395,7 @@ class C5 extends CustomScene {
 
     // console.log(FunGuyRunTick);
     // console.log(moveTick);
-    FunGuyRunTick += 90;
+    FunGuyRunTick += 1000;
   }
 
   update() {
@@ -411,7 +411,7 @@ class C5 extends CustomScene {
       this.scene.start("Gameplay");
     }
 
-    if (FunGuyRunTick < 50) {
+    if (FunGuyRunTick < 500) {
       if (runOnce) {
         runOnce = false;
         this.run.play();
@@ -419,19 +419,19 @@ class C5 extends CustomScene {
     }
 
     // console.log(FunGuyRunTick);
-    if (FunGuyRunTick < 500) {
+    if (FunGuyRunTick < 5000) {
       this.funGuyPhase1.setVisible(false);
       this.funGuyPhase2.setVisible(true);
       this.funGuyPhase3.setVisible(false);
     }
 
-    if (FunGuyRunTick < 300) {
+    if (FunGuyRunTick < 3000) {
       this.funGuyPhase1.setVisible(false);
       this.funGuyPhase2.setVisible(false);
       this.funGuyPhase3.setVisible(true);
     }
 
-    if (FunGuyRunTick > 500) {
+    if (FunGuyRunTick > 8000) {
       this.funGuyPhase1.setVisible(true);
       this.funGuyPhase2.setVisible(false);
       this.funGuyPhase3.setVisible(false);
@@ -476,7 +476,7 @@ class C2 extends CustomScene {
       this.angel.setVisible(false);
     }
 
-    if (FunGuyRunTick < 50) {
+    if (FunGuyRunTick < 500) {
       if (runOnce) {
         runOnce = false;
         this.run.play();
@@ -538,7 +538,7 @@ class C3 extends CustomScene {
       this.angel.setVisible(false);
     }
 
-    if (FunGuyRunTick < 50) {
+    if (FunGuyRunTick < 500) {
       if (runOnce) {
         runOnce = false;
         this.run.play();
@@ -600,7 +600,7 @@ class C4 extends CustomScene {
       this.angel.setVisible(false);
     }
 
-    if (FunGuyRunTick < 50) {
+    if (FunGuyRunTick < 500) {
       if (runOnce) {
         runOnce = false;
         this.run.play();
@@ -662,7 +662,7 @@ class C1 extends CustomScene {
       this.angel.setVisible(false);
     }
 
-    if (FunGuyRunTick < 50) {
+    if (FunGuyRunTick < 500) {
       if (runOnce) {
         runOnce = false;
         this.run.play();
@@ -736,7 +736,7 @@ class C6 extends CustomScene {
       this.scene.start("Gameplay");
     }
 
-    if (FunGuyRunTick < 50) {
+    if (FunGuyRunTick < 500) {
       if (runOnce) {
         runOnce = false;
         this.run.play();
@@ -786,7 +786,7 @@ class C7 extends CustomScene {
       this.angel.setVisible(false);
     }
 
-    if (FunGuyRunTick < 50) {
+    if (FunGuyRunTick < 500) {
       if (runOnce) {
         runOnce = false;
         this.run.play();

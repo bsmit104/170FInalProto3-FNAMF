@@ -11,10 +11,10 @@ let door1;
 let door2;
 let light1;
 let light2;
-let globalTimer = 2000; //240
-let globalPower = 1500;
-let FunGuyRunTick = 600;
-let moveTick = 100;
+let globalTimer = 20000; //240
+let globalPower = 15000;
+let FunGuyRunTick = 10000;
+let moveTick = 4000;
 let door1Open = true;
 let door2Open = true;
 let light1On = false;
