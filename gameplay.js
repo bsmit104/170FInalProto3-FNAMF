@@ -28,6 +28,7 @@ class Gameplay extends Phaser.Scene {
 
   create() {
     this.fan = this.sound.add('fan');
+    this.sound.stopAll();
     this.fan.play();
     this.fan.loop = true;
 
