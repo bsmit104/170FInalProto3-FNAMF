@@ -277,7 +277,7 @@ class Gameplay extends Phaser.Scene {
       }
       if (door1Open == false) {
         //wait 3 seconds
-        const attackprob = [1000, 2000, 3000][Math.floor(Math.random() * 3)];
+        const attackprob = [10000, 20000, 30000][Math.floor(Math.random() * 3)];
         setTimeout(() => {
           if (door1Open == false) {
             this.other.setVisible(false);
@@ -303,7 +303,7 @@ class Gameplay extends Phaser.Scene {
       }
       if (door2Open == false) {
         //wait 3 seconds
-        const attackprob = [1000, 2000, 3000, 4000, 5000][
+        const attackprob = [9000, 10000, 11000, 12000, 13000][
           Math.floor(Math.random() * 5)
         ];
         setTimeout(() => {
