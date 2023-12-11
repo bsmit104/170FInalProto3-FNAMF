@@ -34,6 +34,26 @@ class Gameplay extends Phaser.Scene {
     this.scream = this.sound.add("scream");
     this.run = this.sound.add("run");
 
+    if (newG) {
+      lastCam = "C1";
+      globalTimer = 30000; //240
+      globalPower = 15000;
+      FunGuyRunTick = 10000;
+      moveTick = 2000;
+      door1Open = true;
+      door2Open = true;
+      light1On = false;
+      light2On = false;
+      bool1 = false;
+      bool2 = true;
+      bool3 = false;
+      bool4 = false;
+      bool5 = false;
+      bool6 = false;
+      bool7 = false;
+      newG = false;
+    }
+
     door1Open = false;
     door2Open = false;
     light2On = false;
@@ -210,10 +230,10 @@ class Gameplay extends Phaser.Scene {
     });
     playText.on("pointerdown", () => {
       lastCam = "C1";
-      globalTimer = 2000; //240
-      globalPower = 500;
-      FunGuyRunTick = 600;
-      moveTick = 100;
+      globalTimer = 30000; //240
+      globalPower = 15000;
+      FunGuyRunTick = 10000;
+      moveTick = 2000;
       door1Open = true;
       door2Open = true;
       light1On = false;
@@ -300,6 +320,7 @@ class Gameplay extends Phaser.Scene {
               this.scream.play();
             }
             screamOnce = false;
+            newG = true;
             this.newGame();
             /////add game reset button
             /////reset game values
@@ -328,6 +349,7 @@ class Gameplay extends Phaser.Scene {
               this.scream.play();
             }
             screamOnce = false;
+            newG = true;
             this.newGame();
             /////add game reset button
             /////reset game values

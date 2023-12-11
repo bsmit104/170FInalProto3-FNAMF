@@ -51,7 +51,6 @@ class CustomScene extends Phaser.Scene {
     this.createMapButtons();
 
     if (cursors.down.isDown) {
-      this.static.stop();
       this.scene.start("Gameplay");
     }
 
@@ -81,7 +80,6 @@ class CustomScene extends Phaser.Scene {
     if (FunGuyRunTick < 0) {
       if (door1Open == false) {
         //gameover
-        this.static.stop();
         this.scene.start("Gameplay");
       } else if (door1Open == false) {
         FunGuyRunTick = 300;
@@ -90,6 +88,7 @@ class CustomScene extends Phaser.Scene {
   }
 
   newGame() {
+    newG = true;
     const centerX = this.cameras.main.width / 2;
     const centerY = this.cameras.main.height / 2;
     this.add.text(centerX + 450, centerY + 50, "You Died", {
@@ -125,7 +124,6 @@ class CustomScene extends Phaser.Scene {
       bool6 = false;
       bool7 = false;
       screamOnce = true;
-      this.static.stop();
       this.scene.start("Gameplay");
     });
   }
@@ -361,7 +359,6 @@ class CustomScene extends Phaser.Scene {
     this.setMapSizes(you);
     // you.on("pointerdown", () => this.scene.start("Gameplay"));
     you.on('pointerdown', () => {
-      this.static.stop();
       this.scene.start('Gameplay');
   });
   }
@@ -422,7 +419,6 @@ class C5 extends CustomScene {
     this.MovinShrooms();
 
     if (globalPower < 0) {
-      this.static.stop();
       this.scene.start("Gameplay");
     }
 
@@ -507,7 +503,6 @@ class C2 extends CustomScene {
     this.updatePower();
 
     if (globalPower < 0) {
-      this.static.stop();
       this.scene.start("Gameplay");
     }
 
@@ -570,7 +565,6 @@ class C3 extends CustomScene {
     this.MovinShrooms();
 
     if (globalPower < 0) {
-      this.static.stop();
       this.scene.start("Gameplay");
     }
 
@@ -633,7 +627,6 @@ class C4 extends CustomScene {
     this.updatePower();
 
     if (globalPower < 0) {
-      this.static.stop();
       this.scene.start("Gameplay");
     }
 
@@ -696,7 +689,6 @@ class C1 extends CustomScene {
     this.funGuyRun();
 
     if (globalPower < 0) {
-      this.static.stop();
       this.scene.start("Gameplay");
     }
 
@@ -752,7 +744,6 @@ class C6 extends CustomScene {
     this.funGuyRun();
 
     if (globalPower < 0) {
-      this.static.stop();
       this.scene.start("Gameplay");
     }
 
@@ -822,7 +813,6 @@ class C7 extends CustomScene {
     this.funGuyRun();
 
     if (globalPower < 0) {
-      this.static.stop();
       this.scene.start("Gameplay");
     }
 

@@ -1,6 +1,9 @@
 // SCREAM AND RUN SFX FROM PIXABAY
 // https://pixabay.com/sound-effects/search/scream/ 
 // https://pixabay.com/sound-effects/search/run/
+// https://pixabay.com/sound-effects/search/white-noise/
+// https://pixabay.com/sound-effects/search/electric%20fan/
+// https://pixabay.com/sound-effects/search/office/ 
 
 // tame the javashrek
 'use strict';
@@ -30,6 +33,7 @@ var bool4 = false;
 var bool5 = false;
 var bool6 = false;
 var bool7 = false;
+let newG = true;
 var runOnce = true;
 var randomIndex;
 let screamOnce = true;
