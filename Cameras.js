@@ -100,10 +100,10 @@ class CustomScene extends Phaser.Scene {
     });
     playText.on("pointerdown", () => {
       lastCam = "C1";
-      globalTimer = 2000; //240
-      globalPower = 500;
-      FunGuyRunTick = 600;
-      moveTick = 100;
+      globalTimer = 20000; //240
+      globalPower = 15000;
+      FunGuyRunTick = 6000;
+      moveTick = 2000;
       door1Open = true;
       door2Open = true;
       light1On = false;
@@ -323,7 +323,7 @@ class CustomScene extends Phaser.Scene {
     console.log(bool6);
     console.log(bool7);
 
-    moveTick = 4000; // Could set to random move time
+    moveTick = 2000; // Could set to random move time
   }
 
   createMapButtons() {
@@ -395,7 +395,7 @@ class C5 extends CustomScene {
 
     // console.log(FunGuyRunTick);
     // console.log(moveTick);
-    FunGuyRunTick += 1000;
+    FunGuyRunTick += 500;
   }
 
   update() {
@@ -431,7 +431,7 @@ class C5 extends CustomScene {
       this.funGuyPhase3.setVisible(true);
     }
 
-    if (FunGuyRunTick > 8000) {
+    if (FunGuyRunTick > 7000) {
       this.funGuyPhase1.setVisible(true);
       this.funGuyPhase2.setVisible(false);
       this.funGuyPhase3.setVisible(false);
