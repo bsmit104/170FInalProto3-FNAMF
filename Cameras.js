@@ -9,6 +9,9 @@ class CustomScene extends Phaser.Scene {
     this.load.image("cam", "camera.png");
     this.load.image(this.backgroundKey, `${this.backgroundKey}.png`);
     this.load.audio("run", "funrun.mp3");
+    ////might need to remove others
+    this.load.image("other", "OtherMushroom.png");
+    this.load.image("angel", "angel.png");
   }
 
   setMapSizes(x) {
@@ -24,6 +27,14 @@ class CustomScene extends Phaser.Scene {
 
     this.cameras.main.setBackgroundColor("#000000");
     cursors = this.input.keyboard.createCursorKeys();
+
+    this.otherJump = this.add.image(700, 500, "other");
+    this.otherJump.setVisible(false);
+    this.otherJump.setScale(20);
+
+    this.angelJump = this.add.image(600, 500, "other");
+    this.angelJump.setVisible(false);
+    this.angelJump.setScale(20);
 
     const background = this.add
       .image(960, 540, this.backgroundKey)
@@ -69,6 +80,90 @@ class CustomScene extends Phaser.Scene {
     }
   }
 
+  newGame() {
+    const centerX = this.cameras.main.width / 2;
+    const centerY = this.cameras.main.height / 2;
+    this.add.text(centerX + 450, centerY + 50, "You Died", {
+      fontSize: "100px",
+      fill: "#fff",
+    });
+    const playText = this.add.text(centerX + 450, centerY + 250, "PLAY AGAIN", {
+      fontSize: "100px",
+      fill: "#fff",
+    });
+    playText.setInteractive();
+    playText.on("pointerover", () => {
+      playText.setStyle({ fill: "#3944BC" });
+    });
+    playText.on("pointerout", () => {
+      playText.setStyle({ fill: "#fff" });
+    });
+    playText.on("pointerdown", () => {
+      lastCam = "C1";
+      globalTimer = 2000; //240
+      globalPower = 500;
+      FunGuyRunTick = 600;
+      moveTick = 100;
+      door1Open = true;
+      door2Open = true;
+      light1On = false;
+      light2On = false;
+      bool1 = false;
+      bool2 = true;
+      bool3 = false;
+      bool4 = false;
+      bool5 = false;
+      bool6 = false;
+      bool7 = false;
+      screamOnce = true;
+      this.scene.start("Gameplay");
+    });
+  }
+
+  MovinShrooms() {
+    if (bool5 == true) {
+      if (door1Open == false) {
+        //wait 3 seconds
+        const attackprob = [1000, 2000, 3000][Math.floor(Math.random() * 3)];
+        setTimeout(() => {
+          if (door1Open == false) {
+            this.otherJump.setVisible(true);
+            if (screamOnce) {
+              this.scream.play();
+            }
+            screamOnce = false;
+            this.newGame();
+            /////add game reset button
+            /////reset game values
+            /////jump scare sound
+          }
+        }, attackprob);
+      }
+    }
+
+    if (bool1 == true) {
+      if (door2Open == false) {
+        //wait 3 seconds
+        const attackprob = [1000, 2000, 3000, 4000, 5000][
+          Math.floor(Math.random() * 5)
+        ];
+        setTimeout(() => {
+          if (door1Open == false) {
+            this.angelJump.setVisible(true);
+            if (screamOnce) {
+              this.scream.play();
+            }
+            screamOnce = false;
+            this.newGame();
+            /////add game reset button
+            /////reset game values
+            /////jump scare sound
+          }
+        }, attackprob);
+      }
+    }
+  }
+
   updateTimer() {
     //console.log("C1 updateTimer called");
     // Update the global timer
@@ -82,67 +177,6 @@ class CustomScene extends Phaser.Scene {
   updatePower() {
     globalPower--;
   }
-
-//   setRandomBool() {
-//     // Create an array of boolean variables
-//     var boolArray = [bool1, bool2, bool3, bool4, bool5, bool6, bool7];
-
-//     // Randomly select an index
-//     var randomIndex = Phaser.Math.Between(0, boolArray.length - 1);
-
-//     // Set all booleans to false
-//     boolArray = boolArray.map(function () {
-//       return false;
-//     });
-
-//     // Set the randomly selected boolean to true
-//     boolArray[randomIndex] = true;
-
-//     // Update the original boolean variables
-//     bool1 = boolArray[0];
-//     bool2 = boolArray[1];
-//     bool3 = boolArray[2];
-//     bool4 = boolArray[3];
-//     bool5 = boolArray[4];
-//     bool6 = boolArray[5];
-//     bool7 = boolArray[6];
-
-//     // Define the rules for the next valid booleans based on the current state
-//     var validNextBools = {
-//       bool1: [bool7, bool6, bool5],
-//       bool2: [bool6, bool4],
-//       bool3: [bool7],
-//       bool4: [bool2],
-//       bool5: [bool1, bool6],
-//       bool6: [bool1, bool5, bool2],
-//       bool7: [bool3, bool1],
-//     };
-
-//     // Check and update the next valid booleans based on the rules
-//     var nextValidBools = validNextBools["bool" + (randomIndex + 1)];
-//     nextValidBools.forEach(function (nextBool, index) {
-//       boolArray[index] = nextBool;
-//     });
-
-//     // Update the original boolean variables after considering the rules
-//     bool1 = boolArray[0];
-//     bool2 = boolArray[1];
-//     bool3 = boolArray[2];
-//     bool4 = boolArray[3];
-//     bool5 = boolArray[4];
-//     bool6 = boolArray[5];
-//     bool7 = boolArray[6];
-
-//     console.log(bool1);
-//     console.log(bool2);
-//     console.log(bool3);
-//     console.log(bool4);
-//     console.log(bool5);
-//     console.log(bool6);
-//     console.log(bool7);
-
-//     moveTick = 150; // Could set to random move time
-//   }
 
   setRandomBool() {
     if (bool1) {
@@ -270,8 +304,7 @@ class CustomScene extends Phaser.Scene {
         bool5 = false;
         bool6 = false;
         bool7 = false;
-      }
-      else {
+      } else {
         bool1 = true;
         bool2 = false;
         bool3 = false;
@@ -324,6 +357,8 @@ class CustomScene extends Phaser.Scene {
 
     this.updatePower();
 
+    this.MovinShrooms();
+
     if (moveTick < 0) {
       this.setRandomBool();
     }
@@ -370,12 +405,17 @@ class C5 extends CustomScene {
 
     this.funGuyRun();
 
+    this.MovinShrooms();
+
     if (globalPower < 0) {
       this.scene.start("Gameplay");
     }
 
     if (FunGuyRunTick < 50) {
-      this.run.play();
+      if (runOnce) {
+        runOnce = false;
+        this.run.play();
+      }
     }
 
     // console.log(FunGuyRunTick);
@@ -408,6 +448,7 @@ class C2 extends CustomScene {
     super.preload();
     //this.load.path = "./assets/";
     this.load.image("other", "OtherMushroom.png");
+    this.load.image("angel", "angel.png");
   }
 
   create() {
@@ -416,6 +457,10 @@ class C2 extends CustomScene {
     this.other = this.add.image(500, 500, "other");
     this.other.setVisible(false);
     this.other.setScale(4);
+
+    this.angel = this.add.image(800, 900, "angel");
+    this.angel.setVisible(false);
+    this.angel.setScale(4);
   }
 
   update() {
@@ -425,13 +470,24 @@ class C2 extends CustomScene {
       this.other.setVisible(false);
     }
 
+    if (bool7) {
+      this.angel.setVisible(true);
+    } else {
+      this.angel.setVisible(false);
+    }
+
     if (FunGuyRunTick < 50) {
-      this.run.play();
+      if (runOnce) {
+        runOnce = false;
+        this.run.play();
+      }
     }
 
     this.funGuyRun();
 
     this.updateTimer();
+
+    this.MovinShrooms();
 
     this.updatePower();
 
@@ -454,6 +510,7 @@ class C3 extends CustomScene {
     super.preload();
     //this.load.path = "./assets/";
     this.load.image("other", "OtherMushroom.png");
+    this.load.image("angel", "angel.png");
   }
 
   create() {
@@ -462,6 +519,10 @@ class C3 extends CustomScene {
     this.other = this.add.image(500, 500, "other");
     this.other.setVisible(false);
     this.other.setScale(4);
+
+    this.angel = this.add.image(800, 900, "angel");
+    this.angel.setVisible(false);
+    this.angel.setScale(4);
   }
 
   update() {
@@ -471,8 +532,17 @@ class C3 extends CustomScene {
       this.other.setVisible(false);
     }
 
+    if (bool4) {
+      this.angel.setVisible(true);
+    } else {
+      this.angel.setVisible(false);
+    }
+
     if (FunGuyRunTick < 50) {
-      this.run.play();
+      if (runOnce) {
+        runOnce = false;
+        this.run.play();
+      }
     }
 
     this.updateTimer();
@@ -480,6 +550,8 @@ class C3 extends CustomScene {
     this.updatePower();
 
     this.funGuyRun();
+
+    this.MovinShrooms();
 
     if (globalPower < 0) {
       this.scene.start("Gameplay");
@@ -500,6 +572,7 @@ class C4 extends CustomScene {
     super.preload();
     //this.load.path = "./assets/";
     this.load.image("other", "OtherMushroom.png");
+    this.load.image("angel", "angel.png");
   }
 
   create() {
@@ -508,6 +581,10 @@ class C4 extends CustomScene {
     this.other = this.add.image(500, 500, "other");
     this.other.setVisible(false);
     this.other.setScale(4);
+
+    this.angel = this.add.image(800, 900, "angel");
+    this.angel.setVisible(false);
+    this.angel.setScale(4);
   }
 
   update() {
@@ -517,13 +594,24 @@ class C4 extends CustomScene {
       this.other.setVisible(false);
     }
 
+    if (bool3) {
+      this.angel.setVisible(true);
+    } else {
+      this.angel.setVisible(false);
+    }
+
     if (FunGuyRunTick < 50) {
-      this.run.play();
+      if (runOnce) {
+        runOnce = false;
+        this.run.play();
+      }
     }
 
     this.updateTimer();
 
     this.funGuyRun();
+
+    this.MovinShrooms();
 
     this.updatePower();
 
@@ -546,6 +634,7 @@ class C1 extends CustomScene {
     super.preload();
     //this.load.path = "./assets/";
     this.load.image("other", "OtherMushroom.png");
+    this.load.image("angel", "angel.png");
   }
 
   create() {
@@ -554,6 +643,10 @@ class C1 extends CustomScene {
     this.other = this.add.image(500, 500, "other");
     this.other.setVisible(false);
     this.other.setScale(4);
+
+    this.angel = this.add.image(800, 900, "angel");
+    this.angel.setVisible(false);
+    this.angel.setScale(4);
   }
 
   update() {
@@ -563,13 +656,24 @@ class C1 extends CustomScene {
       this.other.setVisible(false);
     }
 
+    if (bool1) {
+      this.angel.setVisible(true);
+    } else {
+      this.angel.setVisible(false);
+    }
+
     if (FunGuyRunTick < 50) {
-      this.run.play();
+      if (runOnce) {
+        runOnce = false;
+        this.run.play();
+      }
     }
 
     this.updateTimer();
 
     this.updatePower();
+
+    this.MovinShrooms();
 
     this.funGuyRun();
 
@@ -592,6 +696,7 @@ class C6 extends CustomScene {
     super.preload();
     //this.load.path = "./assets/";
     this.load.image("other", "OtherMushroom.png");
+    this.load.image("angel", "angel.png");
   }
 
   create() {
@@ -600,6 +705,10 @@ class C6 extends CustomScene {
     this.other = this.add.image(500, 500, "other");
     this.other.setVisible(false);
     this.other.setScale(4);
+
+    this.angel = this.add.image(800, 900, "angel");
+    this.angel.setVisible(false);
+    this.angel.setScale(4);
   }
 
   update() {
@@ -609,9 +718,17 @@ class C6 extends CustomScene {
       this.other.setVisible(false);
     }
 
+    if (bool5) {
+      this.angel.setVisible(true);
+    } else {
+      this.angel.setVisible(false);
+    }
+
     this.updateTimer();
 
     this.updatePower();
+
+    this.MovinShrooms();
 
     this.funGuyRun();
 
@@ -620,7 +737,10 @@ class C6 extends CustomScene {
     }
 
     if (FunGuyRunTick < 50) {
-      this.run.play();
+      if (runOnce) {
+        runOnce = false;
+        this.run.play();
+      }
     }
 
     if (moveTick < 0) {
@@ -638,6 +758,7 @@ class C7 extends CustomScene {
     super.preload();
     //this.load.path = "./assets/";
     this.load.image("other", "OtherMushroom.png");
+    this.load.image("angel", "angel.png");
   }
 
   create() {
@@ -646,6 +767,10 @@ class C7 extends CustomScene {
     this.other = this.add.image(500, 500, "other");
     this.other.setVisible(false);
     this.other.setScale(4);
+
+    this.angel = this.add.image(800, 900, "angel");
+    this.angel.setVisible(false);
+    this.angel.setScale(4);
   }
 
   update() {
@@ -655,13 +780,24 @@ class C7 extends CustomScene {
       this.other.setVisible(false);
     }
 
+    if (bool2) {
+      this.angel.setVisible(true);
+    } else {
+      this.angel.setVisible(false);
+    }
+
     if (FunGuyRunTick < 50) {
-      this.run.play();
+      if (runOnce) {
+        runOnce = false;
+        this.run.play();
+      }
     }
 
     this.updateTimer();
 
     this.updatePower();
+
+    this.MovinShrooms();
 
     this.funGuyRun();
 

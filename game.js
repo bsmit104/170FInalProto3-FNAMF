@@ -12,7 +12,7 @@ let door2;
 let light1;
 let light2;
 let globalTimer = 2000; //240
-let globalPower = 500;
+let globalPower = 1500;
 let FunGuyRunTick = 600;
 let moveTick = 100;
 let door1Open = true;
@@ -26,6 +26,7 @@ var bool4 = false;
 var bool5 = false;
 var bool6 = false;
 var bool7 = false;
+var runOnce = true;
 var randomIndex;
 let screamOnce = true;
 var boolArray = [bool1, bool2, bool3, bool4, bool5, bool6, bool7];
