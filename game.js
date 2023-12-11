@@ -26,6 +26,7 @@ var bool4 = false;
 var bool5 = false;
 var bool6 = false;
 var bool7 = false;
+var randomIndex;
 let screamOnce = true;
 var boolArray = [bool1, bool2, bool3, bool4, bool5, bool6, bool7];
 // let GameStarting = true;
