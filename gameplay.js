@@ -6,7 +6,7 @@ class Gameplay extends Phaser.Scene {
 
   preload() {
     this.load.path = "./assets/";
-    this.load.image("office", "PlayerRoomLonger.png");
+    this.load.image("office", "PlayerRoom2.png");
     this.load.image("cam", "camera.png");
     this.load.image("door", "H1Door.png");
     this.load.image("button", "amanita.png");
@@ -105,6 +105,10 @@ class Gameplay extends Phaser.Scene {
     this.other = this.add.image(1875, 335, "other");
     this.other.setVisible(false);
     this.other.setScale(4);
+
+    this.angel = this.add.image(95, 335, "angel");
+    this.angel.setVisible(false);
+    this.angel.setScale(4);
   }
 
   setRandomBool() {
