@@ -305,16 +305,16 @@ class Gameplay extends Phaser.Scene {
     }
 
     if (bool5 == true) {
-      if (light1On == true) {
+      if (light2On == true) {
         this.other.setVisible(true);
       } else {
         this.other.setVisible(false);
       }
-      if (door1Open == false) {
+      if (door2Open == false) {
         //wait 3 seconds
-        const attackprob = [10000, 20000, 30000][Math.floor(Math.random() * 3)];
+        const attackprob = [100000, 200000, 300000][Math.floor(Math.random() * 3)];
         setTimeout(() => {
-          if (door1Open == false) {
+          if (door2Open == false) {
             this.other.setVisible(false);
             this.otherJump.setVisible(true);
             if (screamOnce) {
@@ -332,14 +332,14 @@ class Gameplay extends Phaser.Scene {
     }
 
     if (bool1 == true) {
-      if (light2On == true) {
+      if (light1On == true) {
         this.angel.setVisible(true);
       } else {
         this.angel.setVisible(false);
       }
-      if (door2Open == false) {
+      if (door1Open == false) {
         //wait 3 seconds
-        const attackprob = [9000, 10000, 11000, 12000, 13000][
+        const attackprob = [90000, 100000, 110000, 120000, 130000][
           Math.floor(Math.random() * 5)
         ];
         setTimeout(() => {
