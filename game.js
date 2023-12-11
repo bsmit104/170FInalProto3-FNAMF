@@ -35,6 +35,7 @@ var boolArray = [bool1, bool2, bool3, bool4, bool5, bool6, bool7];
 // main game object
 let config = {
     type: Phaser.WEBGL,
+    pixelArt: true,
     scale: {
     mode: Phaser.Scale.FIT,
     autoCenter: Phaser.Scale.CENTER_BOTH,
