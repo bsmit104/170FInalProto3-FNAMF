@@ -320,7 +320,7 @@ class C5 extends CustomScene {
 
 class C2 extends CustomScene {
     constructor() {
-        super('C2', 'H2RoomStage');
+        super('C2', 'H2RoomStage2');
     }
 
     preload() {
@@ -368,7 +368,7 @@ class C2 extends CustomScene {
 
 class C3 extends CustomScene {
     constructor() {
-        super('C3', 'graveyard');
+        super('C3', 'StorageRoom');
     }
 
     preload() {
@@ -416,7 +416,7 @@ class C3 extends CustomScene {
 
 class C4 extends CustomScene {
     constructor() {
-        super('C4', 'pond');
+        super('C4', 'ArcadeRoom');
     }
 
     preload() {
@@ -464,7 +464,7 @@ class C4 extends CustomScene {
 
 class C1 extends CustomScene {
     constructor() {
-        super('C1', 'fairyCircle');
+        super('C1', 'ArcadeRoom');
     }
 
     preload() {
