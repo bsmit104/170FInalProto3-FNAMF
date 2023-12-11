@@ -139,10 +139,12 @@ class Gameplay extends Phaser.Scene {
     this.other = this.add.image(1875, 335, "other");
     this.other.setVisible(false);
     this.other.setScale(4);
+    this.other.setDepth(2);
 
     this.angel = this.add.image(95, 335, "angel");
     this.angel.setVisible(false);
     this.angel.setScale(4);
+    this.angel.setDepth(2);
   }
 
   setRandomBool() {
@@ -305,7 +307,7 @@ class Gameplay extends Phaser.Scene {
     }
 
     if (bool5 == true) {
-      if (light2On == true) {
+      if (light2On == false) {
         this.other.setVisible(true);
       } else {
         this.other.setVisible(false);
@@ -332,7 +334,7 @@ class Gameplay extends Phaser.Scene {
     }
 
     if (bool1 == true) {
-      if (light1On == true) {
+      if (light1On == false) {
         this.angel.setVisible(true);
       } else {
         this.angel.setVisible(false);
