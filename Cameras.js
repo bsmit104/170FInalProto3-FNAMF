@@ -661,13 +661,13 @@ class C1 extends CustomScene {
   }
 
   update() {
-    if (bool5) {
+    if (bool1) {
       this.other.setVisible(true);
     } else {
       this.other.setVisible(false);
     }
 
-    if (bool1) {
+    if (bool5) {
       this.angel.setVisible(true);
     } else {
       this.angel.setVisible(false);

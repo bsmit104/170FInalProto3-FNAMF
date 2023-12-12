@@ -9,7 +9,7 @@ class Gameplay extends Phaser.Scene {
     this.load.image("office", "PlayerRoom2.png");
     this.load.image("cam", "camera.png");
     this.load.image("door", "H1Door.png");
-    this.load.image("button", "amanita.png");
+    this.load.image("button", "Button.png");
     this.load.image("light", "DoorOpen.png");
     this.load.image("funGuy", "FunGuyMob.png");
     this.load.image("dark", "lightsOff.png");
@@ -95,7 +95,7 @@ class Gameplay extends Phaser.Scene {
       fontSize: "35px",
       fill: "#FFFFFF",
     });
-    this.add.text(1300, 950, "blue squares for door and lights", {
+    this.add.text(1300, 950, "red squares for door and lights", {
       fontSize: "35px",
       fill: "#FFFFFF",
     });
@@ -104,6 +104,18 @@ class Gameplay extends Phaser.Scene {
       fill: "#FFFFFF",
     });
     this.add.text(1300, 850, "grey squares to switch cams", {
+      fontSize: "35px",
+      fill: "#FFFFFF",
+    });
+    this.add.text(100, 950, "Survive the night", {
+      fontSize: "35px",
+      fill: "#FFFFFF",
+    });
+    this.add.text(100, 900, "dont die before the timer", {
+      fontSize: "35px",
+      fill: "#FFFFFF",
+    });
+    this.add.text(100, 850, "Try not to run out of power!!", {
       fontSize: "35px",
       fill: "#FFFFFF",
     });
@@ -136,7 +148,7 @@ class Gameplay extends Phaser.Scene {
     this.otherJump.setVisible(false);
     this.otherJump.setScale(20);
 
-    this.angelJump = this.add.image(600, 500, "other");
+    this.angelJump = this.add.image(600, 500, "angel");
     this.angelJump.setVisible(false);
     this.angelJump.setScale(20);
 
@@ -214,6 +226,7 @@ class Gameplay extends Phaser.Scene {
 
   createButton(x, y, door) {
     const button = this.add.image(x, y, "button").setInteractive();
+    button.setScale(3);
     button.on("pointerdown", () => this.toggleDoor(door), this);
   }
 
